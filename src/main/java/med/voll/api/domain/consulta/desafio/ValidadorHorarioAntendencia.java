@@ -18,7 +18,7 @@ public class ValidadorHorarioAntendencia implements ValidadorCancelamientoDeCons
     public void validar(DatosCancelamientoConsulta datos){
         var consulta = consultaRepository.getReferenceById(datos.idConsulta());
         var ahora = LocalDateTime.now();
-        var diferenciaEnHoras = Duration.between(ahora, consulta.getData()).toHours();
+        var diferenciaEnHoras = Duration.between(ahora, consulta.getFecha()).toHours();
 
         if(diferenciaEnHoras < 24){
             throw new ValidationException("Consulta solamente puede ser cancelada presencialmente.");
